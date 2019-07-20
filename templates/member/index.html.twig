@@ -3,6 +3,9 @@
 {% block title %}Member index{% endblock %}
 
 {% block body %}
+    {% if app.user %}
+        <div class="checkbox mb-3">You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+    {% endif %}
     <h1>Member index</h1>
 
     <table class="table">
