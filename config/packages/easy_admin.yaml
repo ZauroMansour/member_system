@@ -1,4 +1,50 @@
+# config/packages/easy_admin.yaml
 easy_admin:
-   entities:
-       # List the entity class name you want to manage
-       - App\Entity\Member
+    site_name: 'PTF-G.M.A <em style="font-size: 80%; color: green">Dahiratoul Iman</em>'
+    design:
+        form_theme:
+            - '@EasyAdmin/form/bootstrap_4.html.twig'
+            - '@VichUploader/Form/fields.html.twig'
+    entities:
+        Member:
+            class: App\Entity\Member
+            list:
+                max_results: 5
+                fields:
+                    - { property: 'imageName', type: 'image', base_path: '/images/member/'}
+                    - fullName
+                    - { property: 'datenaiss', format: 'j/n/Y' }
+                    - genre
+                    - situationFamiliale
+                    - structure
+                    - { property: 'anneeAdhesion', format: 'Y' }   
+                    - phone
+                    - address  
+       
+            form:
+                fields:
+                    - { type: 'group', columns: 6, label: 'Etat civil' }
+                    - firstname
+                    - lastname
+                    - { property: 'datenaiss', type_options: { widget: 'single_text' } }
+                    - { property: genre, type: 'choice', choices: [Masculin , Féminin] }
+                    - { property: situationFamiliale, type: 'choice', choices: ['Célibataire' , 'Marié' , 'Divorcé' , 'Veuf' ] }
+                    - { type: 'group', columns: 6, label: 'Information Basic' }
+                    - structure
+                    - { property: 'anneeAdhesion', type_options: { widget: 'single_text' } }
+                    - { property: 'address', type: 'text' }
+                    - { property: 'phone', icon: 'phone' , label: 'Téléphone 1' }
+                    - { property: 'autrephone', icon: 'phone' , label: 'Téléphone 2'}
+                    - { type: 'group', row: }
+                    - { property: 'imageFile', type: 'file', label: "image d'identité" }
+            export:
+                fields:
+                    - { property: 'imageName', type: 'image', base_path: '/images/member/'}
+                    - fullName
+                    - { property: 'datenaiss', format: 'j/n/Y' }
+                    - genre
+                    - situationFamiliale
+                    - structure
+                    - { property: 'anneeAdhesion', format: 'Y' }   
+                    - phone
+                    - address 
